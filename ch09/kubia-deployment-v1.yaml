@@ -1,0 +1,21 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: kubia
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: kubia
+    spec:
+      containers:
+      - name: nodejs
+        image: reg.navercorp.com/k8s_study/kubia:v1
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8080
+          protocol: TCP
